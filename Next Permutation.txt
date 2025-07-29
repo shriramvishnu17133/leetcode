@@ -1,0 +1,29 @@
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        flag=0
+        for i in range (len(nums)-2,-1,-1 ):
+            if nums[i]<nums[i+1]:
+                print (nums[i],nums[i+1])
+                flag=1
+                break   
+        if flag==0:
+            nums.reverse() 
+            return nums       
+
+        for j in range (len(nums)-1,-1,-1)  :          
+            if nums[j]>nums[i]:
+                nums[i],nums[j]=nums[j],nums[i]
+                break 
+
+        left =i+1
+        right =len(nums)-1
+        while (left<right ):
+            nums[left],nums[right]=nums[right],nums[left]
+            left+=1
+            right-=1
+        return nums         
+		
+		
+		###find the first element from back where nums[i]nums[i+1]
+		that i is the pivot and from there fine the element from right where nums [j]>nums[i] swap it and reverse from pivot +1
+		#if no comdition satisfies reverese the whole array
